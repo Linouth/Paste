@@ -1,18 +1,14 @@
 <?php
 
-require_once 'controller.php';
-require_once 'paster.php';
+require_once './inc/controller.php';
+require_once './inc/paster.php';
 
 $p = new Paster();
 
 if (isset($_POST['content'])) {
     if (!empty($_POST['content'])) {
         $content = $_POST['content'];
-        if (!empty($_POST['title'])) {
-            $title = $_POST['title'];
-        } else {
-            $title = '';
-        }
+        $title = empty($_POST['title']) ? '' : $_POST['title'];
         $p->addPaste($_POST['content'], $title);
     }
 }
@@ -21,6 +17,7 @@ if (isset($_POST['content'])) {
 <html>
     <head>
         <title>Paste</title>
+        <link rel="stylesheet" href="css/style.css" />
         <script src="js/jquery.min.js"></script>
         <script src="js/Vague.js"></script>
         <script src="js/script.js"></script>
