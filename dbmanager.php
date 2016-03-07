@@ -13,7 +13,10 @@
 		/*
 		 * Insert INTO Functies
 		 */
-		
+		public function insertIntoPastes($ID, $title, $content, $IP) {
+			$sql = $this->DBH->prepare("INSERT INTO Paster (pasteID, title, content, ip) VALUES (?, ?, ?, ?)");
+			$sql->execute(array($ID, $title, $content, $IP));
+		}
 		/*
 		 *
 		 */
@@ -34,8 +37,14 @@
 			$sql->execute(array($id));
 			return $sql->fetch();
 		}
+		public function fetchPaste($ID) {
+			$sql = $this->DBH->prepare("SELECT * FROM Paster WHERE `pasteID`=?");
+			$sql->execute(array($ID));
+			return $sql->fetch();
+		}
+
 		public function __toString() {
-			return 'Database helper function.';
+			return 'Database helper class.';
 		}
 
 		public function delete($table, $id) {
