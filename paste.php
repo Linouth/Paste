@@ -2,7 +2,7 @@
 
     class Paste {
         function __construct($ID = null) {
-            require_once 'db_connect.php';
+            require_once './inc/db_connect.php';
 
             if ($ID != null) {
                 $paste = $DBM->fetchPaste($ID);

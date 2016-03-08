@@ -23,10 +23,24 @@ if (isset($_POST['content'])) {
         <script src="js/script.js"></script>
     </head>
     <body>
-        <form method="POST" action="index.php">
-            <textarea name="content" style="width: 500px; height:100px;"></textarea>
-            <input type="text" name="title" />
-            <input type="submit" name="submit" value="Submit" />
-        </form>
+        <section id="container">
+            <div id="input">
+                <form method="POST" action="index.php">
+                    <textarea name="content"></textarea>
+                    <input type="text" name="title" />
+                    <input type="submit" name="submit" value="Submit" />
+                </form>
+            </div>
+        </section>
+        <div id="stars">
+            <?php
+            for ($i = 0; $i < 500; $i++) {
+                $size = rand(1, 2);
+                $x = rand(1, 2000);
+                $y = rand(1, 1500);
+                echo '<div class="star" style="left:' . $x . 'px; top: ' . $y . 'px; animation-delay: ' . $i*0.005 . 's; width: ' . $size . 'px; height: ' . $size . 'px;"></div>';
+            }
+            ?>
+        </div>
     </body>
 </html>
