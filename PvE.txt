@@ -1,0 +1,12 @@
+Eisen (en puntverdeling):
+    - Simpel maar redelijk elegant ontwerp                                   4ptn
+    - Gemakkelijk en erg snel te pasten
+    - Veilige url m.b.v. random hashes (niet een oplopende string of getal)  3ptn
+    - IP Blacklist                                                           2ptn
+    - Admin Panel                                                            3ptn
+    - Mogelijkheid om Public of Unlisted te pasten                           2ptn
+        -  Unlisted alleen toegankelijk met pasteID
+    - Lijnnummers links van paste                                            2ptn
+    - 'Raw' optie om gemakkelijk de paste te downloaden of op te vragen      3ptn
+    - Een lijst met alle Public pastes                                       2ptn
+    - Lijst met IP-adressen + pastes voor admin (in archive)                 1ptn
