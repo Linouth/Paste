@@ -96,12 +96,14 @@ section#container
                 margin 0px 8px
             > a
                 color rgba(col1, 0.4)
-
+        >span.nl
+            margin 3px
+            display block
     div#publics
         width 100%
         margin-top 50px
         #items
-            padding 20px
+            padding 20px 20px 10px 20px
             display flex
             justify-content space-between
             flex-wrap wrap
@@ -117,6 +119,9 @@ section#container
                 overflow hidden
                 margin-bottom 10px
                 white-space nowrap
+        a.btn.archive
+            width 100%
+            margin-bottom 50px
 
     div#post
         margin-bottom 75px
@@ -138,7 +143,7 @@ section#container
             flex-wrap wrap
 
     &.admin, &.login
-        form
+        form, .item
             display flex
             justify-content space-between
             margin 10px 0px;
@@ -152,6 +157,15 @@ section#container
                 width 50%
             input[type='submit']
                 width 30%
+        div.sep
+            width 70%
+            height 1px
+            background rgba(col1, 0.6)
+            display block
+            margin 25px auto
+        a.btn
+            width 100%
+
     &.login
         form
             input[type="password"], input[type="text"]
@@ -178,6 +192,8 @@ section#container
             span:nth-of-type(3)
                 font-size 0.7em
                 color rgba(col1, 0.7)
+                width 75px
+                text-align right
         .btn
             width 30%
             &.prevpage
@@ -209,8 +225,7 @@ section#container
 
 
 .mono
-    // font-family 'Courier New'
-    font-family 'monospace'
+    font-family "Lucida Console", Monaco, monospace
 
 #error
     background col3
@@ -227,12 +242,15 @@ section#container
     padding 8px 20px
     color col1
     text-decoration none
-    display block
+    display inline-block
     text-align center
     transition 0.1s ease-in-out
     &:hover
         background col1 !important
         color bg
+    &.adminpanelbtn
+        width 100% !important
+        margin 10px 0px
 
 
 input

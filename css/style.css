@@ -106,12 +106,16 @@ section#container .heading > span > span {
 section#container .heading > span > a {
   color: rgba(242,236,153,0.4);
 }
+section#container .heading >span.nl {
+  margin: 3px;
+  display: block;
+}
 section#container div#publics {
   width: 100%;
   margin-top: 50px;
 }
 section#container div#publics #items {
-  padding: 20px;
+  padding: 20px 20px 10px 20px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -128,6 +132,10 @@ section#container div#publics #items .item {
   overflow: hidden;
   margin-bottom: 10px;
   white-space: nowrap;
+}
+section#container div#publics a.btn.archive {
+  width: 100%;
+  margin-bottom: 50px;
 }
 section#container div#post {
   margin-bottom: 75px;
@@ -153,30 +161,54 @@ section#container div#postinfo #items {
   flex-wrap: wrap;
 }
 section#container.admin form,
-section#container.login form {
+section#container.login form,
+section#container.admin .item,
+section#container.login .item {
   display: flex;
   justify-content: space-between;
   margin: 10px 0px;
 }
 section#container.admin form *,
-section#container.login form * {
+section#container.login form *,
+section#container.admin .item *,
+section#container.login .item * {
   padding: 5px;
   border-radius: 50px;
   border: none;
 }
 section#container.admin form label,
-section#container.login form label {
+section#container.login form label,
+section#container.admin .item label,
+section#container.login .item label {
   width: 150px;
 }
 section#container.admin form input[type='text'],
 section#container.login form input[type='text'],
+section#container.admin .item input[type='text'],
+section#container.login .item input[type='text'],
 section#container.admin form select,
-section#container.login form select {
+section#container.login form select,
+section#container.admin .item select,
+section#container.login .item select {
   width: 50%;
 }
 section#container.admin form input[type='submit'],
-section#container.login form input[type='submit'] {
+section#container.login form input[type='submit'],
+section#container.admin .item input[type='submit'],
+section#container.login .item input[type='submit'] {
   width: 30%;
+}
+section#container.admin div.sep,
+section#container.login div.sep {
+  width: 70%;
+  height: 1px;
+  background: rgba(242,236,153,0.6);
+  display: block;
+  margin: 25px auto;
+}
+section#container.admin a.btn,
+section#container.login a.btn {
+  width: 100%;
 }
 section#container.login form input[type="password"],
 section#container.login form input[type="text"] {
@@ -205,6 +237,8 @@ section#container #plist .plist-item span:nth-of-type(2) {
 section#container #plist .plist-item span:nth-of-type(3) {
   font-size: 0.7em;
   color: rgba(242,236,153,0.7);
+  width: 75px;
+  text-align: right;
 }
 section#container #plist .btn {
   width: 30%;
@@ -231,7 +265,7 @@ section#container #plist .btn.nextpage {
   border-radius: 100%;
 }
 .mono {
-  font-family: 'monospace';
+  font-family: "Lucida Console", Monaco, monospace;
 }
 #error {
   background: #f25050;
@@ -248,13 +282,17 @@ section#container #plist .btn.nextpage {
   padding: 8px 20px;
   color: #f2ec99;
   text-decoration: none;
-  display: block;
+  display: inline-block;
   text-align: center;
   transition: 0.1s ease-in-out;
 }
 .btn:hover {
   background: #f2ec99 !important;
   color: #002635;
+}
+.btn.adminpanelbtn {
+  width: 100% !important;
+  margin: 10px 0px;
 }
 input::placeholder {
   color: rgba(103,191,173,0.2);

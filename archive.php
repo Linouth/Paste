@@ -4,13 +4,19 @@
     require_once './inc/paster.php';
 
     $p = new Paster();
+    $numOfPastes = 10;
 
-    if (isset($_GET['p']) && !empty($_GET['p'])) {
-        $page = $_GET['p'];
+    if (isset($_GET['page']) && !empty($_GET['page'])) {
+        $page = $_GET['page'];
     } else {
         $page = 1;
     }
     $offset = 10 * ($page-1);
+
+    $ip = null;
+    if (isset($_GET['ip']) && (isset($_SESSION['logged']) && $_SESSION['logged'] == true)) {
+        $ip = $_GET['ip'];
+    }
 
 ?>
 
@@ -27,27 +33,33 @@
                 <span>Here you'll find old pastes.</span>
             </div>
 
-            <div id="plist">
-                <a class="plist-item">
-                    <span>Paste Title</span>
-                    <span>f4c74668ac3b5002a3ff1accb106f680f8885842</span>
-                    <span>192.168.***.***</span>
-                </a>
-                <?php
-                    $recent = $p->getRecentPastes(10, $offset);
-                    foreach ($recent as $paste) {
-                        echo "<a class='plist-item' href='" . $p->getUrl() . "'>" .
-                                '<span>' . $p->getTitle() . '</span>' .
-                                '<span>' . $p->getID() . '</span>' .
-                                '<span>' . $p->getMaskedIP() . '</span>' .
-                             "</a>";
-                    }
-                ?>
-                <?php if ($page > 1): ?>
-                    <a class="btn prevpage" href="archive.php?p=<?php echo $page-1; ?>">Previous Page</a>
-                <?php endif; ?>
-                <a class="btn nextpage" href="archive.php?p=<?php echo $page+1; ?>">Next Page</a>
-            </div>
+            <?php if (is_numeric($page)): ?>
+                <div id="plist">
+                    <?php
+                        $recent = $p->getRecentPastes($numOfPastes, $offset, $ip);
+                        foreach ($recent as $paste) {
+                            // $ip = (isset($_SESSION['logged']) && $_SESSION['logged'] == true) ? $paste->getIP() : $paste->getMaskedIP();
+                            echo '<a class="plist-item" href="' . $paste->getUrl() . '">' .
+                                    '<span>' . $paste->getCroppedTitle(50) . '</span>' .
+                                    '<span class="mono">' . $paste->getID() . '</span>' .
+                                    '<span>' . $paste->getIP() . '</span>' .
+                                 '</a>';
+                        }
+                    ?>
+                    <?php $params = ($ip != null) ? "archive.php?ip=$ip&page=" : "archive.php?page=";
+                    if ($page > 1): ?>
+                        <a class="btn prevpage" href="<?php echo $params . strval($page-1); ?>">Previous Page</a>
+                    <?php endif; ?>
+                    <?php if (count($recent) == $numOfPastes): ?>
+                        <a class="btn nextpage" href="<?php echo $params . strval($page+1); ?>">Next Page</a>
+                    <?php endif; ?>
+                    <?php include_once './inc/adminpanel.php'; ?>
+                </div>
+            <?php else: ?>
+                Page not found.
+            <?php endif; ?>
+
+
         </section>
         <div id="stars">
             <?php

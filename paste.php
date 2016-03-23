@@ -1,5 +1,4 @@
 <?php
-
     class Paste {
         public function __construct() {
             $this->available = true;
@@ -37,11 +36,31 @@
         public function getTitle() {
             return $this->title;
         }
+        public function getCroppedTitle($length) {
+            if (strlen($this->title) > $length) {
+                return substr($this->title, 0, $length-3) . "...";
+            } else {
+                return $this->title;
+            }
+        }
         public function getContent() {
             return $this->content;
         }
-        public function getIP() {
+        public function getActualIP() {
             return $this->ip;
+        }
+        // public function getIP() {
+        //     if ($this->ip == '::1') {
+        //         return 'localhost';
+        //     }
+        //     return $this->ip;
+        // }
+        public function getIP() {
+            if (isset($_SESSION['logged']) && $_SESSION['logged'] == true) {
+                return ($this->ip == '::1') ? 'localhost' : $this->ip;
+            } else {
+                return $this->getMaskedIP();
+            }
         }
         public function getMaskedIP() {
             $ip = explode('.', $this->ip);
@@ -86,15 +105,22 @@
 
             <div id="postinfo" class="heading">
                 <?php echo $paste->getTitle(); ?>
-                <span>(
+                <?php if (strlen($paste->getTitle()) > 20){
+                    echo '<span class="nl">';
+                } else {
+                    echo '<span>';
+                }
+                ?>
+                    (
                     <?php echo $paste->getPub(); ?>
                     <span>|</span>
                     <?php echo $paste->getID(); ?>
                     <span>|</span>
-                    <?php echo $paste->getMaskedIP(); ?>
+                    <?php echo $paste->getIP(); ?>
                     <span>|</span>
                     <a href="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]&r=true"; ?>">Get RAW</a>
-                )</span>
+                    )
+                </span>
             </div>
 
             <div id="post" class="content">
@@ -107,6 +133,8 @@
                 </div>
                 <pre class="mono"><?php echo $paste->getContent(); ?></pre>
             </div>
+
+            <?php include_once './inc/adminpanel.php'; ?>
         </section>
         <div id="stars">
             <?php

@@ -5,7 +5,6 @@
 
     $admin = true;
 
-    session_start();
     $logged = false;
     if (!isset($_SESSION['logged']) || $_SESSION['logged'] == false) {
         header("Location:login.php");
@@ -45,6 +44,7 @@
                 } else {
                     $p->removePasteFromIP($_POST['ip']);
                 }
+                break;
 
             case 'removeByID':
                 if (empty($_POST['id'])) {
@@ -52,6 +52,15 @@
                 } else {
                     $p->removePaste($_POST['id']);
                 }
+                break;
+
+            case 'searchByIP':
+                if (empty($_POST['ip'])) {
+                    Paster::setError("IP address is required.");
+                } else {
+                    header('Location: http://' . $_SERVER['SERVER_NAME'] . Paster::getBaseDir() . "archive.php?page=1&ip=" . $_POST['ip']);
+                }
+                break;
         }
     }
 
@@ -90,10 +99,27 @@
                 <input type="submit" name="submit" value="submit" />
             </form>
 
+            <div class="sep"></div>
+
             <form action="index.php" method="POST">
                 <input type="hidden" name="action" value="removeByIP" />
                 <label>Remove Posts by IP:</label>
                 <input type="text" name="ip" placeholder="IP from which to remove all pastes" />
+                <input type="submit" name="submit" value="submit" />
+            </form>
+            <form action="index.php" method="POST">
+                <input type="hidden" name="action" value="removeByID" />
+                <label>Remove Paste by ID:</label>
+                <input type="text" name="id" placeholder="Paste to remove" />
+                <input type="submit" name="submit" value="submit" />
+            </form>
+
+            <div class="sep"></div>
+
+            <form action="index.php" method="POST">
+                <input type="hidden" name="action" value="searchByIP" />
+                <label>Search Pastes by IP:</label>
+                <input type="text" name="ip" placeholder="IP to look up" />
                 <input type="submit" name="submit" value="submit" />
             </form>
             <form action="index.php" method="POST">

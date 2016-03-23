@@ -37,7 +37,9 @@ if (isset($_POST['content'])) {
             </div>
 
             <div id="publics">
-                <span class="heading">Public Posts</span>
+                <span class="heading">Latest Public Pastes
+                    <span>For more check the Archive.</span>
+                </span>
                 <div id="items">
                     <?php
                     $recent = $p->getRecentPastes(8);
@@ -50,7 +52,10 @@ if (isset($_POST['content'])) {
                     }
                     ?>
                 </div>
+                <a class="btn archive" href="archive.php">Go to the Archive</a>
             </div>
+
+            <?php include_once './inc/adminpanel.php'; ?>
         </section>
         <div id="stars">
             <?php

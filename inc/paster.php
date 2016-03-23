@@ -1,6 +1,7 @@
 <?php
 
 require_once 'controller.php';
+session_start();
 
 class Paster {
     private static $baseDir = "/Paste/";
@@ -48,11 +49,14 @@ class Paster {
         $this->DBM->deleteWhere('Paster', 'ip', $ip);
     }
 
-    public function getRecentPastes($amount, $offset=0) {
+    public function getRecentPastes($amount, $offset=0, $ip=null) {
         require_once 'paste.php';
-
-        $sql = $this->DBH->prepare("SELECT * FROM Paster WHERE pub='public' ORDER BY id DESC LIMIT $offset, $amount");
-        $sql->execute(array($amount));
+        $query = "SELECT * FROM Paster WHERE pub='public' ORDER BY id DESC LIMIT $offset, $amount";
+        if ($ip != null) {
+            $query = "SELECT * FROM Paster WHERE pub='public' AND ip=? ORDER BY id DESC LIMIT $offset, $amount";
+        }
+        $sql = $this->DBH->prepare($query);
+        $sql->execute(array($ip));
 
         $output = array();
         while($row = $sql->fetch()) {
