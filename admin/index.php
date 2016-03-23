@@ -122,12 +122,6 @@
                 <input type="text" name="ip" placeholder="IP to look up" />
                 <input type="submit" name="submit" value="submit" />
             </form>
-            <form action="index.php" method="POST">
-                <input type="hidden" name="action" value="removeByID" />
-                <label>Remove Paste by ID:</label>
-                <input type="text" name="id" placeholder="Paste to remove" />
-                <input type="submit" name="submit" value="submit" />
-            </form>
             <a href="logout.php" class="btn">Logout</a>
         </section>
         <div id="stars">
