@@ -1,6 +1,4 @@
 <?php
-
-require_once './inc/controller.php';
 require_once './inc/paster.php';
 
 $p = new Paster();
@@ -44,11 +42,7 @@ if (isset($_POST['content'])) {
                     <?php
                     $recent = $p->getRecentPastes(8);
                     foreach($recent as $paste) {
-                        $title = $paste->getTitle();
-                        if (strlen($title) > 17) {
-                            $title = substr($paste->getTitle(), 0, 14) . "...";
-                        }
-                        echo "<a href='" . $paste->getUrl() . "' class='item'>" . $title . "</a>";
+                        echo "<a href='" . $paste->getUrl() . "' class='item'>" . $paste->getCroppedTitle(14) . "</a>";
                     }
                     ?>
                 </div>

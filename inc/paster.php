@@ -5,6 +5,7 @@ session_start();
 
 class Paster {
     private static $baseDir = "/Paste/";
+    // private static $baseDir = "/";
     private static $error = '';
 
     public function __construct() {

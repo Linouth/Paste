@@ -84,7 +84,7 @@ section#container form div input[type="submit"] {
   width: 30%;
 }
 section#container form div select {
-  width: 10%;
+  width: 11%;
 }
 section#container .heading {
   font-size: 1.5em;
@@ -209,6 +209,7 @@ section#container.login div.sep {
 section#container.admin a.btn,
 section#container.login a.btn {
   width: 100%;
+  margin-bottom: 10px;
 }
 section#container.login form input[type="password"],
 section#container.login form input[type="text"] {
@@ -229,6 +230,7 @@ section#container #plist .plist-item {
 }
 section#container #plist .plist-item span:nth-of-type(1) {
   width: 50%;
+  overflow: hidden;
 }
 section#container #plist .plist-item span:nth-of-type(2) {
   font-size: 0.7em;

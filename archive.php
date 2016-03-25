@@ -1,6 +1,4 @@
 <?php
-
-    // require_once './inc/controller.php';
     require_once './inc/paster.php';
 
     $p = new Paster();
@@ -38,9 +36,8 @@
                     <?php
                         $recent = $p->getRecentPastes($numOfPastes, $offset, $ip);
                         foreach ($recent as $paste) {
-                            // $ip = (isset($_SESSION['logged']) && $_SESSION['logged'] == true) ? $paste->getIP() : $paste->getMaskedIP();
                             echo '<a class="plist-item" href="' . $paste->getUrl() . '">' .
-                                    '<span>' . $paste->getCroppedTitle(50) . '</span>' .
+                                    '<span>' . $paste->getCroppedTitle(32) . '</span>' .
                                     '<span class="mono">' . $paste->getID() . '</span>' .
                                     '<span>' . $paste->getIP() . '</span>' .
                                  '</a>';
