@@ -47,7 +47,7 @@
                     if ($page > 1): ?>
                         <a class="btn prevpage" href="<?php echo $params . strval($page-1); ?>">Previous Page</a>
                     <?php endif; ?>
-                    <?php if (count($recent) > $numOfPastes): ?>
+                    <?php if (count($recent) = $numOfPastes): ?>
                         <a class="btn nextpage" href="<?php echo $params . strval($page+1); ?>">Next Page</a>
                     <?php endif; ?>
                     <?php include_once './inc/adminpanel.php'; ?>
