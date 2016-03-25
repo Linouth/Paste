@@ -1,7 +1,5 @@
 <?php
-    // require_once '../inc/db_connect.php';
     require_once '../inc/paster.php';
-    require_once '../inc/controller.php';
 
     $admin = true;
 
@@ -95,7 +93,6 @@
                         }
                     ?>
                 </select>
-                <!-- <input type="text" name="ip" placeholder="IP to unban" /> -->
                 <input type="submit" name="submit" value="submit" />
             </form>
 
@@ -122,6 +119,7 @@
                 <input type="text" name="ip" placeholder="IP to look up" />
                 <input type="submit" name="submit" value="submit" />
             </form>
+            <a href="../archive.php" class="btn">Archive with unmasked IP addresses</a>
             <a href="logout.php" class="btn">Logout</a>
         </section>
         <div id="stars">
